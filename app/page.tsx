@@ -1,10 +1,8 @@
 // app/page.tsx
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { Button } from "../components/ui/button";
-import Link from "next/link";
 import axios from "axios";
 
-// 定義新聞資料的型別
 type NewsItem = {
   title: string;
   publishedAt: string;
@@ -12,14 +10,13 @@ type NewsItem = {
   url: string;
 };
 
-// Server Component: 直接在這裡獲取資料
 async function fetchNews() {
   const apiKey = process.env.NEXT_PUBLIC_NEWS_API_KEY;
   const url = `https://newsapi.org/v2/everything?q=TSMC&language=en&sortBy=publishedAt&apiKey=${apiKey}`;
 
   try {
     const response = await axios.get(url);
-    return response.data.articles.slice(0, 9); // 只拿前6篇新聞
+    return response.data.articles.slice(0, 9);
   } catch (error) {
     console.error("獲取新聞失敗:", error);
     return [];
@@ -32,8 +29,6 @@ export default async function Home() {
   return (
     <div>
       <h1 className="text-4xl font-bold mb-6">Latest TSMC News</h1>
-
-      {/* 新聞列表 */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {newsArticles.length > 0 ? (
           newsArticles.map((news, index) => (
