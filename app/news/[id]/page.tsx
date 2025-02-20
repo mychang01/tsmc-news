@@ -2,12 +2,8 @@
 import { newsData } from "../../../lib/news";
 import { notFound } from "next/navigation";
 
-// 定義參數的類型（Next.js 動態路由頁面預期）
-type NewsPageProps = {
-    params: { id: string };
-};
-
-export default function NewsDetail({ params }: NewsPageProps) {
+// 直接定義函數參數的類型，不依賴自訂介面
+export default function NewsDetail({ params }: { params: { id: string } }) {
     const news = newsData.find((n) => n.id === parseInt(params.id));
 
     if (!news) {
