@@ -2,11 +2,16 @@
 import { newsData } from "../../../lib/news";
 import { notFound } from "next/navigation";
 
-export default function NewsDetail({ params }: { params: { id: string } }) {
+// 定義參數的類型（Next.js 動態路由頁面預期）
+type NewsPageProps = {
+    params: { id: string };
+};
+
+export default function NewsDetail({ params }: NewsPageProps) {
     const news = newsData.find((n) => n.id === parseInt(params.id));
 
     if (!news) {
-        notFound(); // Shows a 404 page if news isn’t found
+        notFound(); // 如果找不到新聞，返回 404
     }
 
     return (
