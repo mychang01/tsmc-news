@@ -1,5 +1,19 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# 忽略node_modules
+node_modules/
 
+# 忽略環境變數檔案（保護你的API Key）
+.env
+.env.local
+.env.development
+.env.production
+
+# 忽略Next.js的建置檔案
+.next/
+out/
+
+# 其他不必要的檔案
+*.log
 # dependencies
 /node_modules
 /.pnp
